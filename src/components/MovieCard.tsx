@@ -11,7 +11,7 @@ const MovieCard = ({ movie }: Props) => {
   const percentage = parseInt((movie.vote_average * 10).toFixed(0), 10);
 
   return (
-    <Card width="300px" borderRadius={10} overflow="hidden">
+    <Card>
       <Image src={imageURL} alt={movie.title} />
       <CardBody>
         <Heading fontSize="2xl">{movie.title}</Heading>
