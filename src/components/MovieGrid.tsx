@@ -5,7 +5,7 @@ import MovieCardSkeleton from "./MovieCardSkeleton";
 import MovieCardComponent from "./MovieCardComponent";
 
 const MovieGrid = () => {
-  const { movies, error, isLoading } = useMovies();
+  const { data, error, isLoading } = useMovies();
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -18,13 +18,13 @@ const MovieGrid = () => {
       >
         {isLoading &&
           skeletons.map((skeleton) => (
-            <MovieCardComponent>
-              <MovieCardSkeleton key={skeleton} />
+            <MovieCardComponent key={skeleton}>
+              <MovieCardSkeleton />
             </MovieCardComponent>
           ))}
-        {movies.map((movie) => (
-          <MovieCardComponent>
-            <MovieCard key={movie.id} movie={movie} />
+        {data.map((movie) => (
+          <MovieCardComponent key={movie.id}>
+            <MovieCard movie={movie} />
           </MovieCardComponent>
         ))}
       </SimpleGrid>
