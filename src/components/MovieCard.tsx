@@ -1,6 +1,6 @@
 import React from "react";
 import { Movie } from "../hooks/useMovies";
-import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
+import { Card, CardBody, Heading, HStack, Image, Text } from "@chakra-ui/react";
 import CriticScore from "./CriticScore";
 
 interface Props {
@@ -15,6 +15,9 @@ const MovieCard = ({ movie }: Props) => {
       <Image src={imageURL} alt={movie.title} />
       <CardBody>
         <Heading fontSize="xl">{movie.title}</Heading>
+        <Text fontSize="sm" color="gray.500">
+          {movie.release_date}
+        </Text>
         <HStack justifyContent="right">
           <CriticScore score={percentage} />
         </HStack>
