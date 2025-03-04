@@ -14,13 +14,13 @@ const MovieCard = ({ movie }: Props) => {
     <Card>
       <Image src={imageURL} alt={movie.title} />
       <CardBody>
-        <Heading fontSize="xl">{movie.title}</Heading>
-        <Text fontSize="sm" color="gray.500">
-          {movie.release_date}
-        </Text>
-        <HStack justifyContent="right">
+        <HStack justifyContent="space-between" marginBottom={3}>
+          <Text fontSize="sm" color="gray.500">
+            {movie.release_date}
+          </Text>
           <CriticScore score={percentage} />
         </HStack>
+        <Heading fontSize="xl">{movie.title}</Heading>
       </CardBody>
     </Card>
   );
