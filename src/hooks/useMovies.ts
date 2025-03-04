@@ -18,11 +18,23 @@ export interface Movie {
     const { data, error, isLoading } = useData<Movie>('/movie/popular', {}, [gameQuery.genre?.id]);
     
     // Filter movies locally based on selectedGenre's id if one is selected.
-    const filteredMovies = gameQuery.genre
-      ? data.filter((movie) => movie.genre_ids.includes(gameQuery.genre!.id))
-      : data;
-  
-    return { data: filteredMovies, error, isLoading };
-  };
-  
-  export default useMovies;
+    let filteredMovies = data;
+
+  // Filter by genre if selected
+  if (gameQuery.genre) {
+    filteredMovies = filteredMovies.filter((movie) =>
+      movie.genre_ids.includes(gameQuery.genre!.id)
+    );
+  }
+
+  // Filter by search text if entered
+  if (gameQuery.searchText) {
+    filteredMovies = filteredMovies.filter((movie) =>
+      movie.title.toLowerCase().includes(gameQuery.searchText.toLowerCase())
+    );
+  }
+
+  return { data: filteredMovies, error, isLoading };
+};
+
+export default useMovies;
