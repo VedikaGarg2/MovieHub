@@ -43,27 +43,25 @@ const MovieGrid = ({ gameQuery }: Props) => {
     return 0;
   });
 
+  if (error) return <Text>{error}</Text>;
   return (
-    <>
-      {error && <Text>{error}</Text>}
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-        padding={10}
-        spacing={6}
-      >
-        {isLoading &&
-          skeletons.map((skeleton) => (
-            <MovieCardComponent key={skeleton}>
-              <MovieCardSkeleton />
-            </MovieCardComponent>
-          ))}
-        {sortedMovies.map((movie) => (
-          <MovieCardComponent key={movie.id}>
-            <MovieCard movie={movie} />
+    <SimpleGrid
+      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+      padding={10}
+      spacing={6}
+    >
+      {isLoading &&
+        skeletons.map((skeleton) => (
+          <MovieCardComponent key={skeleton}>
+            <MovieCardSkeleton />
           </MovieCardComponent>
         ))}
-      </SimpleGrid>
-    </>
+      {sortedMovies.map((movie) => (
+        <MovieCardComponent key={movie.id}>
+          <MovieCard movie={movie} />
+        </MovieCardComponent>
+      ))}
+    </SimpleGrid>
   );
 };
 
