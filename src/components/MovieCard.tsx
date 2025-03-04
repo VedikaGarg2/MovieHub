@@ -14,7 +14,7 @@ const MovieCard = ({ movie }: Props) => {
     <Card>
       <Image src={imageURL} alt={movie.title} />
       <CardBody>
-        <Heading fontSize="2xl">{movie.title}</Heading>
+        <Heading fontSize="xl">{movie.title}</Heading>
         <HStack justifyContent="right">
           <CriticScore score={percentage} />
         </HStack>

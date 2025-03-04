@@ -3,9 +3,14 @@ import useMovies from "../hooks/useMovies";
 import MovieCard from "./MovieCard";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import MovieCardComponent from "./MovieCardComponent";
+import { Genre } from "../hooks/useGenres";
 
-const MovieGrid = () => {
-  const { data, error, isLoading } = useMovies();
+interface Props {
+  selectedGenre: Genre | null;
+}
+
+const MovieGrid = ({ selectedGenre }: Props) => {
+  const { data, error, isLoading } = useMovies(selectedGenre);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -14,7 +19,7 @@ const MovieGrid = () => {
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding={10}
-        spacing={10}
+        spacing={4}
       >
         {isLoading &&
           skeletons.map((skeleton) => (
